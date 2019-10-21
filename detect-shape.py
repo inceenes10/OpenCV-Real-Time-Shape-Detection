@@ -8,6 +8,14 @@ def nothing(x):
 cap = cv2.VideoCapture(0)
 
 cv2.namedWindow("Trackbars")
+
+
+cv2.namedWindow("Frame", cv2.WINDOW_NORMAL)
+cv2.resizeWindow("Frame", 800, 600)
+cv2.namedWindow("Mask", cv2.WINDOW_NORMAL)
+cv2.resizeWindow("Mask", 800, 600)
+
+
 cv2.createTrackbar("L-H", "Trackbars", 0, 180, nothing)
 cv2.createTrackbar("L-S", "Trackbars", 66, 255, nothing)
 cv2.createTrackbar("L-V", "Trackbars", 134, 255, nothing)
@@ -56,7 +64,11 @@ while True:
                 cv2.putText(frame, "Triangle", (x, y), font, 1, (0, 0, 0))
             elif len(approx) == 4:
                 cv2.putText(frame, "Rectangle", (x, y), font, 1, (0, 0, 0))
-            elif 10 < len(approx) < 20:
+            elif len(approx) == 5:
+                cv2.putText(frame, "Pentagon", (x, y), font, 1, (0, 0, 0))
+            elif 5 < len(approx) < 15:
+                cv2.putText(frame, "Ellipse", (x, y), font, 1, (0, 0, 0))
+            else:
                 cv2.putText(frame, "Circle", (x, y), font, 1, (0, 0, 0))
 
 
